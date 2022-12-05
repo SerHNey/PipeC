@@ -11,13 +11,12 @@ int main()
 	DWORD actual_write;
 	LPWSTR buffer = calloc(read_buffer, sizeof(char));
 	HANDLE hNamePipe;
-	LPSTR pipeName = L"";
+	LPSTR pipeName = L"\\\\.\\pipe\\MyPipe";
 	BOOL SuccessRead;
 	BOOL isSuccess;
 	DWORD dwMode = PIPE_READMODE_MESSAGE;
 	while (1)
 	{
-		
 		hNamePipe = CreateFile(pipeName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
 		isSuccess = SetNamedPipeHandleState(hNamePipe, &dwMode, NULL, NULL);
 		if (!isSuccess) {
@@ -27,7 +26,7 @@ int main()
 		else
 		{
 			if (flag_awser) {
-				printf("¬ведите сообщение дл€ сервера:\n");
+				printf("¬ведите сообщение дл€ сервера: \n");
 				gets(message);
 				buffer = &message;
 				WriteFile(hNamePipe, buffer, read_buffer, &actual_write, NULL);
