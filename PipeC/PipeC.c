@@ -21,6 +21,7 @@ int main()
 				printf("\nКлиент отключился");
 
 			printf(buffer);
+			CloseHandle(hNamePipe);
 		}
 	}
 
