@@ -4,7 +4,7 @@ int main()
 {
 	system("chcp 1251");
 	HANDLE hNamePipe;
-	LPSTR pipeName = L"";
+	LPSTR pipeName = L"\\\\.\\pipe\\MyPipe";
 	DWORD read_buffer = 100;
 	LPWSTR buffer = calloc(read_buffer, sizeof(char));
 	char message[100];
