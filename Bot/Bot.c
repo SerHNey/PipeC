@@ -1,5 +1,24 @@
-﻿#include <Stdio.h>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include <Stdio.h>
 #include <Windows.h>
+#include <math.h>
+
+char* provekra(char* stroka) {
+	char message[256];
+	int i = 0;
+	while (stroka[i]) {
+		i++;
+		if (stroka[i] > 96 || stroka[i] < -1) {
+			return "Ошибка";
+		}
+	}
+	double number = pow(atof(stroka),2);
+	sprintf(message, "%f", number);
+	return message;
+}
+
+
+
 int main()
 {
 	system("chcp 1251");
@@ -31,7 +50,7 @@ int main()
 				printf(buffer);
 				printf("\n");
 				printf("\nВведите сообщение для клиента");
-				gets(message);
+				sprintf(message, "%s", provekra(buffer));
 				buffer = &message;
 				WriteFile(hNamePipe, buffer, read_buffer, &actual_read, NULL);
 			}
