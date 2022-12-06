@@ -42,10 +42,10 @@ int main()
 			NULL);
 		Connected = ConnectNamedPipe(hNamePipe, NULL);
 		if (Connected) {
-			printf("\nКлиент подключился\n");
+			printf("\nКлиент подключился");
 			SuccessRead = ReadFile(hNamePipe, buffer, read_buffer, &actual_read, NULL);
 			if (SuccessRead) {
-				printf("\nКлиент пишет");
+				printf("\nКлиент пишет: ");
 				printf(buffer);
 				double result = provekra(buffer);
 				if (result == 1) {
@@ -54,8 +54,8 @@ int main()
 				else {
 					sprintf(message, "%f", result);
 				}
-				printf("\n");
-				printf("\nВведите сообщение для клиента");
+				//printf("\n");
+				//printf("\nВведите сообщение для клиента");
 				//sprintf(message, "%s", provekra(buffer));
 				WriteFile(hNamePipe, message, read_buffer, &actual_read, NULL);
 			}

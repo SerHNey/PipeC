@@ -34,7 +34,7 @@ int main()
 			}
 			SuccessRead = ReadFile(hNamePipe, buffer, 100, &actual_read, NULL);
 			if (SuccessRead) {
-				printf("\n Сервер пишет: ");
+				printf("\nСервер пишет: ");
 				printf(buffer);
 				printf("\n");
 				flag_awser = TRUE;
