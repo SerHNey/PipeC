@@ -27,10 +27,10 @@ int main()
 			printf("\nКлиент подключился\n");
 			SuccessRead = ReadFile(hNamePipe, buffer, read_buffer, &actual_read, NULL);
 			if (SuccessRead) {
-				printf("\nКлиент пишет");
+				printf("\nКлиент пишет: ");
 				printf(buffer);
 				printf("\n");
-				printf("\nВведите сообщение для клиента");
+				printf("\nВведите сообщение для клиента: ");
 				gets(message);
 				buffer = &message;
 				WriteFile(hNamePipe, buffer, read_buffer, &actual_read, NULL);

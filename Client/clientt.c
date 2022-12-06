@@ -9,7 +9,7 @@ int main()
 	DWORD read_buffer = 100;
 	DWORD actual_read;
 	DWORD actual_write;
-	LPWSTR buffer = calloc(read_buffer, sizeof(char));
+	LPWSTR buffer = (CHAR*) calloc(read_buffer, sizeof(char));
 	HANDLE hNamePipe;
 	LPSTR pipeName = L"\\\\.\\pipe\\MyPipe";
 	BOOL SuccessRead;

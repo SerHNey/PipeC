@@ -3,18 +3,17 @@
 #include <Windows.h>
 #include <math.h>
 
-char* provekra(char* stroka) {
+double provekra(char* stroka) {
 	char message[256];
 	int i = 0;
 	while (stroka[i]) {
 		i++;
 		if (stroka[i] > 96 || stroka[i] < -1) {
-			return "Ошибка";
+			return 1;
 		}
 	}
 	double number = pow(atof(stroka),2);
-	sprintf(message, "%f", number);
-	return message;
+	return number;
 }
 
 
@@ -25,7 +24,7 @@ int main()
 	HANDLE hNamePipe;
 	LPSTR pipeName = L"\\\\.\\pipe\\MyPipe";
 	DWORD read_buffer = 100;
-	LPWSTR buffer = calloc(read_buffer, sizeof(char));
+	LPWSTR buffer =(CHAR*) calloc(read_buffer, sizeof(char));
 	char message[100];
 	DWORD actual_read;
 	BOOL Connected;
@@ -48,11 +47,17 @@ int main()
 			if (SuccessRead) {
 				printf("\nКлиент пишет");
 				printf(buffer);
+				double result = provekra(buffer);
+				if (result == 1) {
+					sprintf(message, "%s", "Ошибка");
+				}
+				else {
+					sprintf(message, "%f", result);
+				}
 				printf("\n");
 				printf("\nВведите сообщение для клиента");
-				sprintf(message, "%s", provekra(buffer));
-				buffer = &message;
-				WriteFile(hNamePipe, buffer, read_buffer, &actual_read, NULL);
+				//sprintf(message, "%s", provekra(buffer));
+				WriteFile(hNamePipe, message, read_buffer, &actual_read, NULL);
 			}
 		}
 		else
