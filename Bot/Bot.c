@@ -16,8 +16,6 @@ double provekra(char* stroka) {
 	return number;
 }
 
-
-
 int main()
 {
 	system("chcp 1251");
@@ -42,7 +40,7 @@ int main()
 			NULL);
 		Connected = ConnectNamedPipe(hNamePipe, NULL);
 		if (Connected) {
-			printf("\nКлиент подключился");
+			printf("\nСоединено");
 			SuccessRead = ReadFile(hNamePipe, buffer, read_buffer, &actual_read, NULL);
 			if (SuccessRead) {
 				printf("\nКлиент пишет: ");
@@ -54,9 +52,6 @@ int main()
 				else {
 					sprintf(message, "%f", result);
 				}
-				//printf("\n");
-				//printf("\nВведите сообщение для клиента");
-				//sprintf(message, "%s", provekra(buffer));
 				WriteFile(hNamePipe, message, read_buffer, &actual_read, NULL);
 			}
 		}
